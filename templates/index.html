@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ProductLens — Smart Amazon Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Besley:ital,wght@0,400..900;1,400..900&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="bg-shape s1"></div>
+<div class="bg-shape s2"></div>
+<div class="bg-shape s3"></div>
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-mark">◈</span>
+    <span class="logo-text">ProductLens</span>
+  </div>
+  <p class="tagline">Smarter Amazon comparisons — powered by review intelligence</p>
+</header>
+<main>
+  <!-- ── Landing Tabs ──────────────────────────────────── -->
+  <section id="landing-section">
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('desktop')">
+        <span class="tab-icon">🖥️</span>
+        <span>Desktop / Laptop</span>
+      </button>
+      <button class="tab-btn" onclick="switchTab('mobile')">
+        <span class="tab-icon">📱</span>
+        <span>Mobile App</span>
+      </button>
+      <button class="tab-btn tab-btn--primary" onclick="switchTab('compare')">
+        <span class="tab-icon">◈</span>
+        <span>Start Comparing</span>
+      </button>
+    </div>
+
+    <!-- ── Desktop Instructions ──── -->
+    <div class="tab-panel active" id="tab-desktop">
+      <div class="guide-card">
+        <div class="guide-header">
+          <span class="guide-icon">🖥️</span>
+          <div>
+            <h2 class="guide-title">How to get a product link on Desktop or Laptop</h2>
+            <p class="guide-sub">Follow either method below — both take less than 10 seconds.</p>
+          </div>
+        </div>
+        <div class="methods-row">
+          <!-- Method A -->
+          <div class="method-card">
+            <div class="method-badge">Method A</div>
+            <h3 class="method-title">Using the Share button</h3>
+            <p class="method-note">Works on the Amazon website.</p>
+            <ol class="steps-list">
+              <li>
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <strong>Open the product page</strong> Search for the product you want and open its page. Make sure you are viewing the exact variant you want — colour, size, and model should be correct before copying the link.
+                  <img src="{{ url_for('static', filename='images/D1.png') }}" class="step-screenshot step-screenshot--wide" alt="Open Amazon product page" />
+                </div>
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <strong>Find the Share button</strong>
+                  <img src="{{ url_for('static', filename='images/DA2.jpg') }}" class="step-screenshot step-screenshot--wide" alt="Share button on Amazon" />
+                </div>
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <strong>Click "Copy link"</strong>
+                  <img src="{{ url_for('static', filename='images/DA3.png') }}" class="step-screenshot step-screenshot--wide" alt="Copy link option" />
+                </div>
+              </li>
+              <li>
+                <span class="step-num">4</span>
+                <div class="step-body">
+                  <strong>Paste the link</strong> into the input field in ProductLens using Ctrl + V (Windows) or Cmd+ V (Mac).
+                  <img src="{{ url_for('static', filename='images/D4.png') }}" class="step-screenshot step-screenshot--wide" alt="Paste link in ProductLens" />
+                </div>
+              </li>
+            </ol>
+          </div>
+
+          <div class="method-divider">or</div>
+
+          <!-- Method B -->
+          <div class="method-card">
+            <div class="method-badge">Method B</div>
+            <h3 class="method-title">Using the address bar</h3>
+            <p class="method-note">The quickest way on a browser.</p>
+            <ol class="steps-list">
+              <li>
+                <span class="step-num">1</span>
+                <div class="step-body">
+                  <strong>Open the product page</strong> Search for the product you want and open its page. Make sure you are viewing the exact variant you want — colour, size, and model should be correct before copying the link.
+                  <img src="{{ url_for('static', filename='images/D1.png') }}" class="step-screenshot step-screenshot--wide" alt="Open Amazon product page" />
+                </div>
+              </li>
+              <li>
+                <span class="step-num">2</span>
+                <div class="step-body">
+                  <strong>Click the address bar</strong> at the top of your browser.
+                  <img src="{{ url_for('static', filename='images/DB2.jpg') }}" class="step-screenshot step-screenshot--wide" alt="Click address bar" />
+                </div>
+              </li>
+              <li>
+                <span class="step-num">3</span>
+                <div class="step-body">
+                  <strong>Copy the URL</strong> by pressing Ctrl + C (Windows) or Cmd + C (Mac).
+                  <img src="{{ url_for('static', filename='images/DB3.png') }}" class="step-screenshot step-screenshot--wide" alt="Copy URL" />
+                </div>
+              </li>
+              <li>
+                <span class="step-num">4</span>
+                <div class="step-body">
+                  <strong>Paste the link</strong> into the input field in ProductLens using Ctrl + V (Windows) or Cmd + V (Mac).
+                  <img src="{{ url_for('static', filename='images/D4.png') }}" class="step-screenshot step-screenshot--wide" alt="Paste link in ProductLens" />
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="guide-tip">
+          <span>💡</span>
+          <span>Tip: You can compare 2 to 5 products at once. Open each product in a separate browser tab, copy the URL from each, and paste them one by one into ProductLens.</span>
+        </div>
+        <div class="guide-cta">
+          <button class="btn-analyze" onclick="switchTab('compare')">
+            <span class="btn-text">Go to ProductLens</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Mobile Instructions ──── -->
+    <div class="tab-panel" id="tab-mobile">
+      <div class="guide-card">
+        <div class="guide-header">
+          <span class="guide-icon">📱</span>
+          <div>
+            <h2 class="guide-title">How to get a product link on Mobile</h2>
+            <p class="guide-sub">Works with the Amazon app on both Android and iPhone.</p>
+          </div>
+        </div>
+        <div class="mobile-steps">
+          <div class="mobile-step">
+            <div class="mobile-step-num">1</div>
+            <div class="mobile-step-content">
+              <h4>Open the product in the Amazon app</h4>
+              <p>Search for the product you want and open its page. Make sure you are viewing the exact variant you want — colour, size, and model should be correct before copying the link.</p>
+              <div class="mobile-screenshot-wrap">
+                <img src="{{ url_for('static', filename='images/M1.jpg') }}" class="step-screenshot step-screenshot--mobile" alt="Open product in Amazon app" />
+              </div>
+            </div>
+          </div>
+          <div class="mobile-step">
+            <div class="mobile-step-num">2</div>
+            <div class="mobile-step-content">
+              <h4>Tap the Share button</h4>
+              <p>Look for the Share icon</p>
+              <div class="mobile-screenshot-wrap">
+                <img src="{{ url_for('static', filename='images/M2.jpg') }}" class="step-screenshot step-screenshot--mobile" alt="Share button in Amazon app" />
+              </div>
+            </div>
+          </div>
+          <div class="mobile-step">
+            <div class="mobile-step-num">3</div>
+            <div class="mobile-step-content">
+              <h4>Tap "Copy link"</h4>
+              <p>A share sheet will appear with several options. Tap <strong>Copy link</strong> or <strong>Copy</strong>. The product link is now saved to your clipboard.</p>
+              <div class="mobile-screenshot-wrap">
+                <img src="{{ url_for('static', filename='images/M3.jpg') }}" class="step-screenshot step-screenshot--mobile" alt="Copy link in share sheet" />
+              </div>
+            </div>
+          </div>
+          <div class="mobile-step">
+            <div class="mobile-step-num">4</div>
+            <div class="mobile-step-content">
+              <h4>Paste the link into ProductLens</h4>
+              <p>Open ProductLens in your mobile browser. Tap on an input field, then tap and hold to bring up the paste option, and tap <strong>Paste</strong>. Repeat this for each product you want to compare.</p>
+              <div class="mobile-screenshot-wrap">
+                <img src="{{ url_for('static', filename='images/M4.png') }}" class="step-screenshot step-screenshot--mobile" alt="Paste link in ProductLens" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="guide-tip">
+          <span>💡</span>
+          <span>Tip: Open each product in a separate Amazon app session, copy the link, switch to your browser, paste it in, then go back to the app for the next product.</span>
+        </div>
+        <div class="guide-cta">
+          <button class="btn-analyze" onclick="switchTab('compare')">
+            <span class="btn-text">Go to ProductLens</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Compare Tab ──── -->
+    <div class="tab-panel" id="tab-compare">
+      <div class="input-card">
+        <h2 class="section-heading">Compare Products</h2>
+        <p class="input-desc">Paste 2–5 Amazon product URLs below. ProductLens will analyse the reviews, check for suspicious patterns, and tell you which product is the best buy.</p>
+        <p class="input-desc-sub">Not sure how to get a product link? Check the <button class="inline-link" onclick="switchTab('desktop')">Desktop guide</button> or <button class="inline-link" onclick="switchTab('mobile')">Mobile guide</button>.</p>
+        <div id="url-inputs">
+          <div class="url-row" data-idx="0">
+            <span class="url-num">01</span>
+            <input type="url" class="url-field" placeholder="https://www.amazon.in/dp/..." oninput="updateClearBtn(this)" />
+            <button class="btn-clear-input hidden" onclick="clearInput(this)" title="Clear">✕</button>
+            <button class="btn-remove" onclick="removeUrl(this)" title="Remove">×</button>
+          </div>
+          <div class="url-row" data-idx="1">
+            <span class="url-num">02</span>
+            <input type="url" class="url-field" placeholder="https://www.amazon.in/dp/..." oninput="updateClearBtn(this)" />
+            <button class="btn-clear-input hidden" onclick="clearInput(this)" title="Clear">✕</button>
+            <button class="btn-remove" onclick="removeUrl(this)" title="Remove">×</button>
+          </div>
+        </div>
+
+        <!-- ── Budget Priority Toggle ── -->
+        <div class="budget-toggle-row" id="budget-toggle-row">
+          <input type="checkbox" id="budget-priority" class="budget-checkbox" onchange="updateBudgetToggle()" />
+          <label class="budget-pill-label" for="budget-priority">
+            <span class="budget-pill-track"></span>
+            <span class="budget-pill-thumb"></span>
+          </label>
+          <div class="budget-text">
+            <div class="budget-title">Budget Priority</div>
+            <div class="budget-desc" id="budget-desc">
+              OFF — Features and review quality drive the score. Price is not factored in.
+            </div>
+            <div class="budget-weights">
+              <!-- Budget OFF pills (default visible) -->
+              <span class="bw-pill highlighted" id="bw-rari">Authenticity 22%</span>
+              <span class="bw-pill highlighted" id="bw-rating">Rating 32%</span>
+              <span class="bw-pill highlighted" id="bw-sentiment">Sentiment 28%</span>
+              <span class="bw-pill highlighted" id="bw-aspects">Aspects 18%</span>
+              <span class="bw-pill" id="bw-price" style="display:none">Price 12%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-actions">
+          <button class="btn-add" id="btn-add" onclick="addUrl()">+ Add product</button>
+          <button class="btn-clear" onclick="clearAll()">Clear</button>
+          <button class="btn-analyze" id="btn-analyze" onclick="analyze()">
+            <span class="btn-text">Analyse</span>
+            <span class="btn-icon">→</span>
+          </button>
+        </div>
+        <div id="input-error" class="input-error hidden"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Loading ────────────────────────────────────── -->
+  <section id="loading-section" class="hidden">
+    <div class="loader-wrap">
+      <div class="loader-ring">
+        <div></div><div></div><div></div><div></div>
+      </div>
+      <p class="loader-label" id="loader-label">Getting things ready…</p>
+      <p class="loader-sub" id="loader-sub">This may take a moment. Please wait.</p>
+    </div>
+  </section>
+
+  <!-- ── Results ────────────────────────────────────── -->
+  <section id="results-section" class="hidden">
+    <div class="results-header">
+      <h2 class="section-heading">Analysis Results</h2>
+      <button class="btn-reset" onclick="resetAll()">← New Comparison</button>
+    </div>
+    <div id="winner-banner" class="winner-banner hidden"></div>
+    <div id="products-grid" class="products-grid"></div>
+  </section>
+</main>
+
+<footer>
+  <p>ProductLens &nbsp;·&nbsp; Review Intelligence for Smarter Shopping &nbsp;·&nbsp; Not affiliated with Amazon</p>
+</footer>
+
+<script>
+// ── Tab switching ─────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  const btns = document.querySelectorAll('.tab-btn');
+  const map = { desktop: 0, mobile: 1, compare: 2 };
+  btns[map[name]]?.classList.add('active');
+  document.getElementById('landing-section').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ── URL Management ────────────────────────────────────────────
+let urlCount = 2;
+
+function addUrl() {
+  if (urlCount >= 5) return;
+  urlCount++;
+  const container = document.getElementById('url-inputs');
+  const row = document.createElement('div');
+  row.className = 'url-row';
+  row.dataset.idx = urlCount - 1;
+  row.innerHTML = `
+    <span class="url-num">${String(urlCount).padStart(2,'0')}</span>
+    <input type="url" class="url-field" placeholder="https://www.amazon.in/dp/..." oninput="updateClearBtn(this)" />
+    <button class="btn-clear-input hidden" onclick="clearInput(this)" title="Clear">✕</button>
+    <button class="btn-remove" onclick="removeUrl(this)" title="Remove">×</button>
+  `;
+  container.appendChild(row);
+  row.querySelector('input').focus();
+  updateAddBtn();
+}
+
+function removeUrl(btn) {
+  const rows = document.querySelectorAll('.url-row');
+  if (rows.length <= 2) return;
+  btn.closest('.url-row').remove();
+  urlCount = Math.max(2, urlCount - 1);
+  document.querySelectorAll('.url-row').forEach((row, i) => {
+    row.querySelector('.url-num').textContent = String(i + 1).padStart(2, '0');
+  });
+  updateAddBtn();
+}
+
+function clearInput(btn) {
+  const input = btn.closest('.url-row').querySelector('.url-field');
+  input.value = '';
+  btn.classList.add('hidden');
+  input.focus();
+}
+
+function updateClearBtn(input) {
+  const btn = input.closest('.url-row').querySelector('.btn-clear-input');
+  if (btn) btn.classList.toggle('hidden', input.value.trim() === '');
+}
+
+function clearAll() {
+  document.querySelectorAll('.url-field').forEach(f => f.value = '');
+  document.querySelectorAll('.btn-clear-input').forEach(b => b.classList.add('hidden'));
+  document.getElementById('input-error').classList.add('hidden');
+  document.querySelectorAll('.url-field')[0]?.focus();
+}
+
+function updateAddBtn() {
+  const btn = document.getElementById('btn-add');
+  btn.disabled = urlCount >= 5;
+  btn.textContent = urlCount >= 5 ? 'Max 5 products' : '+ Add product';
+}
+
+// ── Budget Priority Toggle ────────────────────────────────────
+function updateBudgetToggle() {
+  const on = document.getElementById('budget-priority').checked;
+  document.getElementById('budget-toggle-row').classList.toggle('active', on);
+
+  document.getElementById('budget-desc').textContent = on
+    ? 'ON — Price is a key factor alongside sentiment, rating, and aspects.'
+    : 'OFF — Features and review quality drive the score. Price is not factored in.';
+
+  const priceEl    = document.getElementById('bw-price');
+  const rariEl     = document.getElementById('bw-rari');
+  const ratingEl   = document.getElementById('bw-rating');
+  const sentEl     = document.getElementById('bw-sentiment');
+  const aspectsEl  = document.getElementById('bw-aspects');
+
+  if (on) {
+    // Budget ON weights
+    priceEl.style.display   = '';
+    priceEl.textContent     = 'Price 12%';
+    rariEl.textContent      = 'Authenticity 20%';
+    ratingEl.textContent    = 'Rating 27%';
+    sentEl.textContent      = 'Sentiment 23%';
+    aspectsEl.textContent   = 'Aspects 18%';
+
+    // All pills highlighted when budget ON (price is now active)
+    [priceEl, rariEl, ratingEl, sentEl, aspectsEl].forEach(el => el.classList.add('highlighted'));
+  } else {
+    // Budget OFF weights — price pill hidden entirely
+    priceEl.style.display   = 'none';
+    rariEl.textContent      = 'Authenticity 22%';
+    ratingEl.textContent    = 'Rating 32%';
+    sentEl.textContent      = 'Sentiment 28%';
+    aspectsEl.textContent   = 'Aspects 18%';
+
+    [rariEl, ratingEl, sentEl, aspectsEl].forEach(el => el.classList.add('highlighted'));
+    priceEl.classList.remove('highlighted');
+  }
+}
+
+// ── Analyse ───────────────────────────────────────────────────
+const loadingMessages = [
+  'Getting things ready…',
+  'Fetching product details from Amazon…',
+  'Cleaning and analysing reviews…',
+  'Running RARI authenticity checks…',
+  'Extracting aspect sentiments…',
+  'Calculating Trust Scores…',
+  'Almost there…',
+];
+
+async function analyze() {
+  const inputs   = document.querySelectorAll('.url-field');
+  const urls     = Array.from(inputs).map(i => i.value.trim()).filter(Boolean);
+  const errEl    = document.getElementById('input-error');
+  const budgetOn = document.getElementById('budget-priority').checked;
+
+  errEl.classList.add('hidden');
+
+  if (urls.length < 2) {
+    errEl.textContent = 'Please enter at least 2 Amazon product URLs.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  document.getElementById('landing-section').classList.add('hidden');
+  const loading = document.getElementById('loading-section');
+  loading.classList.remove('hidden');
+
+  let mi = 0;
+  const msgTimer = setInterval(() => {
+    mi = (mi + 1) % loadingMessages.length;
+    document.getElementById('loader-label').textContent = loadingMessages[mi];
+  }, 2800);
+
+  try {
+    const resp = await fetch('/analyze', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ urls, budget_priority: budgetOn }),
+    });
+    const data = await resp.json();
+    clearInterval(msgTimer);
+
+    if (data.error) {
+      loading.classList.add('hidden');
+      document.getElementById('landing-section').classList.remove('hidden');
+      switchTab('compare');
+      errEl.innerHTML = data.error.replace(/\|/g, '<br>•');
+      errEl.classList.remove('hidden');
+      return;
+    }
+
+    loading.classList.add('hidden');
+    renderResults(data.products, data.budget_priority);
+  } catch (e) {
+    clearInterval(msgTimer);
+    loading.classList.add('hidden');
+    document.getElementById('landing-section').classList.remove('hidden');
+    switchTab('compare');
+    errEl.textContent = 'Something went wrong. Please try again.';
+    errEl.classList.remove('hidden');
+  }
+}
+
+// ── Render Results ────────────────────────────────────────────
+function renderResults(products, budgetPriority) {
+  const section = document.getElementById('results-section');
+  const grid    = document.getElementById('products-grid');
+  const banner  = document.getElementById('winner-banner');
+  section.classList.remove('hidden');
+  grid.innerHTML = '';
+
+  const winner = products.find(p => p.recommended && !p.error);
+  if (winner) {
+    const wScore = winner.scoring?.total_trust_score ?? '—';
+    banner.innerHTML = `
+      <div class="winner-inner">
+        ${winner.thumbnail
+          ? `<img class="winner-img" src="${esc(winner.thumbnail)}" alt="${esc(winner.title)}" referrerpolicy="no-referrer" />`
+          : '<div class="winner-img-placeholder">📦</div>'}
+        <div class="winner-details">
+          <div class="winner-badge">★ Best Pick</div>
+          <div class="winner-title">${esc(winner.title)}</div>
+          <div class="winner-pills">
+            ${winner.price    ? `<span class="wpill wpill-price">₹${Number(winner.price).toLocaleString('en-IN')}</span>` : ''}
+            ${winner.rating   ? `<span class="wpill wpill-rating">★ ${winner.rating}</span>` : ''}
+            ${winner.category ? `<span class="wpill wpill-cat">${esc(winner.category)}</span>` : ''}
+            ${(winner.total_reviews != null && winner.total_reviews !== 0) ? `<span class="wpill">${Number(winner.total_reviews).toLocaleString('en-IN')} reviews</span>` : ''}
+            ${budgetPriority  ? '<span class="wpill wpill-rating">Budget Priority ON</span>' : ''}
+            <span class="wpill wpill-score">Trust Score: <strong>${wScore} / 100</strong></span>
+          </div>
+          <a class="winner-link" href="${esc(winner.url)}" target="_blank" rel="noopener">View on Amazon ↗</a>
+        </div>
+      </div>`;
+    banner.classList.remove('hidden');
+  }
+
+  products.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'product-card' + (p.recommended ? ' product-card--winner' : '');
+    card.style.animationDelay = `${i * 0.08}s`;
+    card.innerHTML = buildCard(p, budgetPriority);
+    grid.appendChild(card);
+    setTimeout(() => animateBars(card), 100 + i * 80);
+  });
+}
+
+// ── Build Card ────────────────────────────────────────────────
+function buildCard(p, budgetPriority) {
+  if (p.error) return `<div class="card-error"><span>⚠</span><p>${esc(p.error)}</p></div>`;
+
+  const score     = p.scoring?.total_trust_score ?? 0;
+  const rari      = p.rari ?? {};
+  const sentiment = p.overall_sentiment ?? {};
+  const aspects   = p.aspect_sentiments ?? {};
+  const comp      = p.scoring?.components ?? {};
+  const rariLevel = rari.level ?? 'low';
+  const rariColor = { low: 'green', medium: 'amber', high: 'red' }[rariLevel];
+  const totalReviews = (p.total_reviews != null && p.total_reviews !== 0)
+    ? Number(p.total_reviews).toLocaleString('en-IN') : '—';
+
+  const topAspects = Object.entries(aspects);
+  const aspectRows = topAspects.map(([name, data]) => {
+    const barPct   = Math.round(((data.score + 1) / 2) * 100);
+    const cls      = data.score >= 0.05 ? 'pos' : data.score <= -0.05 ? 'neg' : 'neu';
+    const numScore = (data.score >= 0 ? '+' : '') + (data.score * 100).toFixed(0);
+    return `
+      <div class="aspect-row">
+        <span class="aspect-name">${esc(name)}</span>
+        <div class="aspect-bar-wrap">
+          <div class="aspect-bar aspect-bar--${cls}" data-target="${barPct}"></div>
+        </div>
+        <span class="aspect-score ${cls}">${numScore}</span>
+        <span class="aspect-lbl ${cls}">${data.label}</span>
+      </div>`;
+  }).join('');
+
+  // ── Score breakdown rows ──
+  // Budget OFF: Authenticity 22% | Rating 32% | Sentiment 28% | Aspects 18%
+  // Budget ON:  Authenticity 20% | Price 12%  | Rating 27%    | Sentiment 23% | Aspects 18%
+  const scoreRows = [
+    budgetPriority
+      ? [`Authenticity (20%)`, comp.rari_trust]
+      : [`Authenticity (22%)`, comp.rari_trust],
+    budgetPriority
+      ? [`Price Value (12%)`,  comp.price_score]   // only present in comp when budget ON
+      : null,                                        // omitted entirely when budget OFF
+    budgetPriority
+      ? [`Star Rating (27%)`,  comp.rating_score]
+      : [`Star Rating (32%)`,  comp.rating_score],
+    budgetPriority
+      ? [`Review Sentiment (23%)`, comp.sentiment_score]
+      : [`Review Sentiment (28%)`, comp.sentiment_score],
+    budgetPriority
+      ? [`Feature Scores (18%)`,   comp.aspect_score]
+      : [`Feature Scores (18%)`,   comp.aspect_score],
+  ]
+  .filter(row => row !== null && row[1] != null)   // drop null rows and missing values
+  .map(([label, val]) => {
+    const v = Math.round(val);
+    return `
+      <div class="score-row">
+        <span class="score-label">${label}</span>
+        <div class="score-bar-wrap">
+          <div class="score-bar" data-target="${v}"></div>
+        </div>
+        <span class="score-val">${v}</span>
+      </div>`;
+  }).join('');
+
+  return `
+    <div class="card-rank">#${p.rank}</div>
+    ${p.recommended ? '<div class="card-crown">★ Best Pick</div>' : ''}
+    <div class="card-head">
+      ${p.thumbnail
+        ? `<img class="card-thumb" src="${esc(p.thumbnail)}" alt="${esc(p.title)}" loading="lazy" referrerpolicy="no-referrer" />`
+        : '<div class="card-thumb-ph">📦</div>'}
+      <div class="card-head-text">
+        <h3 class="card-title">${esc(p.title)}</h3>
+        <a class="card-amazon-link" href="${esc(p.url)}" target="_blank" rel="noopener">View on Amazon ↗</a>
+        <div class="card-meta-row">
+          ${p.price    ? `<span class="meta-pill meta-price">₹${Number(p.price).toLocaleString('en-IN')}</span>` : ''}
+          ${p.rating   ? `<span class="meta-pill meta-rating">★ ${p.rating}</span>` : ''}
+          ${p.category ? `<span class="meta-pill meta-cat">${esc(p.category)}</span>` : ''}
+          ${p.seller   ? `<span class="meta-pill meta-seller">${esc(p.seller)}</span>` : ''}
+        </div>
+      </div>
+    </div>
+    ${rariLevel === 'unknown'
+      ? `<div class="rari-block rari--grey">
+           <div class="rari-row">
+             <span class="rari-label">Review Authenticity</span>
+             <span class="rari-badge rari-badge--grey">NOT ASSESSED</span>
+           </div>
+           <div class="rari-na">— Cannot assess authenticity with no reviews</div>
+         </div>`
+      : `<div class="rari-block rari--${rariColor}">
+           <div class="rari-row">
+             <span class="rari-label">Review Authenticity</span>
+             <span class="rari-badge rari-badge--${rariColor}">${rariLevel.toUpperCase()} RISK</span>
+           </div>
+           <div class="${rari.fake_likely ? 'rari-warn' : 'rari-ok'}">
+             ${rari.fake_likely ? '⚠ Some reviews may not be genuine — verify before purchasing' : '✓ Reviews appear genuine'}
+           </div>
+         </div>`
+    }
+    ${p.no_reviews ? `<div class="no-reviews-notice">
+      <span>📭</span>
+      <span>No reviews found for this product on Amazon. Sentiment and feature analysis are not available.</span>
+    </div>` : ''}
+    <h4 class="sub-heading" style="margin-bottom:8px;">
+      Overall Sentiment
+      <span style="font-size:9px;font-weight:500;color:var(--text-muted);text-transform:none;letter-spacing:0">(full review text — all topics)</span>
+    </h4>
+    <div class="sentiment-grid">
+      <div class="sent-box sent-pos">
+        <span class="sent-num">${sentiment.positive_pct ?? 0}%</span>
+        <span class="sent-lbl">Positive</span>
+      </div>
+      <div class="sent-box sent-neu">
+        <span class="sent-num">${sentiment.neutral_pct ?? 0}%</span>
+        <span class="sent-lbl">Neutral</span>
+      </div>
+      <div class="sent-box sent-neg">
+        <span class="sent-num">${sentiment.negative_pct ?? 0}%</span>
+        <span class="sent-lbl">Negative</span>
+      </div>
+      <div class="sent-box sent-count">
+        <span class="sent-num">${totalReviews}</span>
+        <span class="sent-lbl">Total Buyers</span>
+      </div>
+    </div>
+    <div class="analysis-split-note">
+      <span class="note-icon">ℹ</span>
+      <span><strong>Why these may differ:</strong> Overall Sentiment scores each complete review — including buyer comments on delivery, packaging, and seller. Feature Scores below analyse only sentences that mention a specific product feature.</span>
+    </div>
+    ${topAspects.length > 0 ? `
+    <div class="aspects-section">
+      <h4 class="sub-heading">Feature Scores <span style="font-size:9px;font-weight:500;color:var(--text-muted);text-transform:none;letter-spacing:0">(product-feature sentences only)</span></h4>
+      <div class="aspects-list">${aspectRows}</div>
+    </div>` : ''}
+    <div class="score-breakdown">
+      <h4 class="sub-heading">Score Breakdown</h4>
+      ${scoreRows}
+    </div>
+    <div class="trust-block">
+      <span class="tts-label">Trust Score</span>
+      <span class="tts-value">${score}</span>
+      <span class="tts-max">/ 100</span>
+    </div>
+  `;
+}
+
+// ── Helpers ───────────────────────────────────────────────────
+function animateBars(card) {
+  card.querySelectorAll('[data-target]').forEach(bar => {
+    bar.style.setProperty('--w', bar.dataset.target + '%');
+    bar.classList.add('animated');
+  });
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function resetAll() {
+  document.getElementById('results-section').classList.add('hidden');
+  document.getElementById('winner-banner').classList.add('hidden');
+  document.getElementById('landing-section').classList.remove('hidden');
+  document.getElementById('input-error').classList.add('hidden');
+  switchTab('compare');
+}
+</script>
+</body>
+</html>
